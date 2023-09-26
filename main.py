@@ -27,8 +27,32 @@ def compute(poly):
   for i in range(special_chars_len):
     values[-i - 1] = special_chars[-i - 1] + "".join(sorted(values[-i - 1]))
 
-  
+  # DIVIDING VALUES INTO POSITIVES AND NEGATIVES
+  # DUPLICATING VALUES TO REMOVE NUMBERS
+  negatives = []
+  positives = []
+  for value in values:
+    # FINDING NUM
+    n = 1
+    for char in value:
+      if char.isnumeric():
+        n = int(char)
+        break
+
+    next_value = value[1:]
+    if next_value[0].isnumeric():
+      next_value = next_value[1:]
+
+    if '-' in value:
+      for _ in range(n):
+        negatives.append(next_value)
+    else:
+      for _ in range(n):
+        positives.append(next_value)
 
   print(values)
+  print(negatives)
+  print(positives)
+
 
 compute(poly)
